@@ -60,3 +60,59 @@
 
 ## 보일러 플레이트 Create React App (CRA)
 * 복잡한 설정 없이 프로젝트를 생성할 수 있는 개발 도구
+
+#24/01/05
+## JSX 문법 
+* HTML과 JS를 직접 연결해 사용할 수 있는 XML.
+* {}묶어서 사용
+
+## 주의사항
+### 1. 객체 자료형 렌더링 오류
+* 원시 자료형(숫자, 문자, 논리, null, undefined)을 제외한 값을 사용하면 오류 발생.
+* -> 객체, 배열, BOM, DOM은 오류
+### 2. 닫기 태그 필수
+* HTML 규칙 상 닫기태그가 존재하지 않더라도 JSX에서는 반드시 닫기 태그를 표시해야 한다.
+* <img><br><input> -> <img/><br/><input/>
+### 4. 스타일 작성법
+* 인라인 스타일링 -> `<main style={{"border:"5px solid black"}}>`
+=> 스타일 규칙이 많을 시 복잡성이 높아져 가독성이 떨어질 수 있다.
+* 외부 스타일 파일 분리 (script도 동일) -> `import 'url'`
+=> 스타일 파일 분리 및 구성만 잘해준다면 파일 관리에 뛰어나고 가독성이 좋다
+
+---
+
+## 환경설정
+* src > App.js와 index.js는 기본 세팅이므로 지우면 안됨.
+### index.js
+* `import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);`
+### App.js
+* `function App() {
+  return (
+    <div className="App">
+      
+    </div>
+  );
+}
+
+export default App;`
+
+## React 파일 연결
+* 리액트는 src 개발환경 내에서 html파일을 생성하지 않고 모두 js 파일로 생성돼서 개발된다.
+js는 원칙적으로 자바스크립트 작성파일이기 떄문에 리액트에서KTML을 js 내에서 표현하려면 function 함수를 먼저 생성하여 작성해야 한다. 함수 내에 HTML을 작성하면 JSX 문법과 함꼐 자바스크립트와 HTML을 사용할 수 있어 효율적이다.
+* 다른 js파일로 작성되어 있는 컴포넌트를 불러오려면
+해당 컴포넌트 맨 하단에 "export default 컴포넌트명"으로 내보내는 리액트가 작성되어 있어야 한다.
+* 그 후 내보낸 컴포넌트를 받는 js 파일에서
+import 명령으로 import 받는컴포넌트명 from '해당파일경로'로 작성해서 컴포넌트를 받아 사용하게 된다.
+* -> 내보낼 파일에 export default 이름 / 보낼 파일에 import 이름 from 경로
+* 이후 App 컨포넌트 내부의 return 반환 컴포넌트에 <이름 /> 형식으로 작성 -> 해당 이름 컴포넌트의 데이터가 index로 이동되어 node 서버에 나타나게 됨.
+* 컴포넌트 == aka.함수// 리액트에서는 컴포넌트라고 부름.
+
